@@ -28,3 +28,24 @@ ans =
 
     7.0030
 ```
+
+## Factoring larger primes
+For primes up to 64-bits, this repository has an implementation of Shanks's square forms factorization, which is an enhancement on the simpler Fermat's factorization method (also included in this repository, see FermatFactor.m):
+```
+>> assert(isequal(SquareFormsFactorization(int64(9223372036854775781)), factor(int64(int64(9223372036854775781)))));
+>> tic, SquareFormsFactorization(int64(9223372036854775781)); seconds(toc)
+
+ans = 
+
+  duration
+
+   0.13129 sec
+
+>> tic, factor(int64(9223372036854775781)); seconds(toc)
+
+ans = 
+
+  duration
+
+   34.54 sec
+```
