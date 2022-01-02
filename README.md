@@ -34,14 +34,15 @@ speedupFactor =
 
 MATLAB's *factor* funtion first calculates all primes up to sqrt(N). Creating this prime sieve takes ~30 seconds for 64-bit numbers. SQUFOF bypasses this by looking for congruences and perfect squares which greatly accelerates performance:
 ```
->> assert(isequal(SquareFormsFactorization(int64(9223372036854775781)), factor(int64(int64(9223372036854775781)))));
->> tic, SquareFormsFactorization(int64(9223372036854775781)); seconds(toc)
+>> num = int64(9223372036854775781);
+>> assert(isequal(SquareFormsFactorization(num), factor(num)));
+>> tic, SquareFormsFactorization(num); seconds(toc)
 
 duration = 
 
    0.13129 sec
 
->> tic, factor(int64(9223372036854775781)); seconds(toc)
+>> tic, factor(num); seconds(toc)
 
 duration = 
 
