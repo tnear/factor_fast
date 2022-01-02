@@ -1,4 +1,5 @@
 # factor_fast
+*factor_fast* is a work-in-progress (partial) replacement for MATLAB's documented [*factor*](https://www.mathworks.com/help/matlab/ref/factor.html) function. It is not yet as polished or tested as [*isprime_fast*](https://github.com/tnear/isprime_fast).
 
 ## Syntax
 The syntax for *factor_fast* is identical to *factor*. It accepts a numeric scalar then returns a sorted list of irreducible factors. The only difference lies in the techniques used to determine the factors. *factor_fast* uses carefully incrementing trial division.
@@ -11,41 +12,46 @@ ans =
 ```
 
 ## Performance comparison between *factor* and *factor_fast*
-This repository offers multiple factoring functions. factor_fast is tailored to factor small numbers quickly. For 2- to 32-bit numbers, factor_fast often runs 2x to 20x faster than MATLAB's bulit-in *factor*:
+This repository offers multiple factoring functions. *factor_fast* is tailored to factor small numbers quickly. For 2- to 32-bit numbers, factor_fast often runs 2x to 20x faster than MATLAB's bulit-in *factor*:
 
 ```
 % 32-bit composite
 >> timeit(@() factor(3080806313)) / timeit(@() factor_fast(3080806313))
-
-ans =
+speedupFactor =
 
    19.3342
 
 % 12-bit pseudoprime
 >> timeit(@() factor(3127)) / timeit(@() factor_fast(3127))
-
-ans =
+speedupFactor =
 
     7.0030
 ```
 
 ## Factoring larger primes
-For primes up to 64-bits, this repository has an implementation of Shanks's square forms factorization, which is an enhancement on the simpler Fermat's factorization method (also included in this repository, see FermatFactor.m):
+### Shanks's square forms factorization
+[Shanks's square forms factorization](https://en.wikipedia.org/wiki/Shanks%27s_square_forms_factorization) (SQUFOF) is an enhancement on the simpler Fermat's factorization method (also included in this repository, see FermatFactor.m):
+
+MATLAB's *factor* funtion first calculates all primes up to sqrt(N). Creating this prime sieve takes ~30 seconds for 64-bit numbers. SQUFOF bypasses this by looking for congruences and perfect squares which greatly accelerates performance:
 ```
 >> assert(isequal(SquareFormsFactorization(int64(9223372036854775781)), factor(int64(int64(9223372036854775781)))));
 >> tic, SquareFormsFactorization(int64(9223372036854775781)); seconds(toc)
 
-ans = 
-
-  duration
+duration = 
 
    0.13129 sec
 
 >> tic, factor(int64(9223372036854775781)); seconds(toc)
 
-ans = 
-
-  duration
+duration = 
 
    34.54 sec
 ```
+
+However, the reason that *SquareFormsFactorization* hasn't yet been rolled into *factor_fast* is due to its inherent overflow limits from the multiply checks.
+
+### Other factor algorithms included in this repository
+- Fermat's factorization method ([FermatFactor.m](FermatFactor.m))
+- Pollard's rho algorithm ([PollardRho.m](PollardRho.m))
+- Pollard's p − 1 algorithm ([PollardPMinus1.m](PollardPMinus1.m))
+- Tonelli–Shanks algorithm ([TonelliShanks.m](TonelliShanks.m))
