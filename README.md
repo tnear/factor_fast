@@ -49,7 +49,7 @@ duration =
    34.54 sec
 ```
 
-However, the reason that *SquareFormsFactorization* hasn't yet been rolled into *factor_fast* is due to its inherent overflow limits from the multiply checks.
+However, the reason that *SquareFormsFactorization* hasn't yet been rolled into *factor_fast* is due to its inherent 64-bit overflow limits from its multiply checks.
 
 ### Other factor algorithms included in this repository
 - Fermat's factorization method ([FermatFactor.m](FermatFactor.m))
