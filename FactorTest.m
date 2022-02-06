@@ -1,3 +1,4 @@
+% Basic regression and performance tests for factor_fast
 classdef FactorTest < matlab.unittest.TestCase
     properties (TestParameter)
         nonScalars = {[], [1, 2], cell.empty};
