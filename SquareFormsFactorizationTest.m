@@ -1,3 +1,4 @@
+% Regression and performance tests for Shanks's square forms factorization
 classdef SquareFormsFactorizationTest < matlab.unittest.TestCase
     properties (TestParameter)
         number = {2322, 8587, 11111, 18885, 57113, 65536, 65537, single(510510), ...
