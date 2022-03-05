@@ -1,5 +1,5 @@
 # factor_fast
-*factor_fast* is a work-in-progress (partial) replacement for MATLAB's documented [*factor*](https://www.mathworks.com/help/matlab/ref/factor.html) function. It is not yet as polished or tested as [*isprime_fast*](https://github.com/tnear/isprime_fast).
+*factor_fast* is a work-in-progress (and partial) replacement for MATLAB's documented [*factor*](https://www.mathworks.com/help/matlab/ref/factor.html) function. It is not yet as polished or tested as [*isprime_fast*](https://github.com/tnear/isprime_fast).
 
 ## Syntax
 The syntax for *factor_fast* is identical to *factor*. It accepts a numeric scalar then returns a sorted list of irreducible factors. The only difference lies in the techniques used to determine the factors. *factor_fast* uses carefully incrementing trial division.
