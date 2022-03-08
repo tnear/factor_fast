@@ -30,7 +30,7 @@ speedupFactor =
 
 ## Factoring larger primes
 ### Shanks's square forms factorization
-[Shanks's square forms factorization](https://en.wikipedia.org/wiki/Shanks%27s_square_forms_factorization) (SQUFOF) is an enhancement on the simpler Fermat's factorization method (also included in this repository, see FermatFactor.m):
+[Shanks's square forms factorization](https://en.wikipedia.org/wiki/Shanks%27s_square_forms_factorization) (SQUFOF) is an enhancement on the simpler Fermat's factorization method (see [FermatFactor.m](https://github.com/tnear/factor_fast/blob/master/FermatFactor.m)):
 
 MATLAB's *factor* funtion first calculates all primes up to *sqrt(N)*. Creating this prime sieve takes ~30 seconds for 64-bit numbers. SQUFOF bypasses this by looking for congruences and perfect squares which greatly accelerates performance:
 ```
