@@ -12,7 +12,7 @@ ans =
 ```
 
 ## Performance comparison between *factor* and *factor_fast*
-This repository offers multiple factoring functions. *factor_fast* is tailored to factor small numbers quickly. For 2- to 32-bit numbers, factor_fast often runs 2x to 20x faster than MATLAB's bulit-in *factor*:
+The *factor_fast* repository offers multiple factoring functions. *factor_fast* is tailored to factor small numbers quickly. For 2- to 32-bit numbers, factor_fast often runs 2x to 20x faster than MATLAB's bulit-in *factor*:
 
 ```
 % 32-bit composite
